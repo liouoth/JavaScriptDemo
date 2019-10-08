@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>根据用户名生成头像</title>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <img src="" style="border-radius: 50%;" id="userAvatar">
+    <canvas id="avatarCanvas" style="display:none"></canvas>
+</body>
+    <script type="text/javascript">
+        var username = Math.random().toString(32).substring(3,8);
+        generatorAvator(username,60,null,"avatarCanvas","userAvatar");
+    </script>
+</html>
