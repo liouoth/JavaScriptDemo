@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>根据用户名生成头像</title>
+    <script src="js/geometryAvator.js"></script>
+</head>
+<body>
+    <img src="" style="border-radius: 50%;" id="userAvatar">
+    <canvas id="avatarCanvas" style="display:none"></canvas>
+</body>
+    <script type="text/javascript">
+        var canvas = document.getElementById('avatarCanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            for(let i = 0;i<4;i++){
+
+            }
+            ctx.beginPath();
+            ctx.moveTo(75, 50);
+            ctx.lineTo(100, 75);
+            ctx.lineTo(100, 25);
+            ctx.fill();
+            document.getElementById(avatarContainerId).src = canvas.toDataURL("image/png");
+        }
+    </script>
+</html>
