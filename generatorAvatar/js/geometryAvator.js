@@ -2,7 +2,7 @@
 class position{
     init(){
          this.x = Math.floor(Math.random()*5);
-         this.y = Math.floor(Math.random()*511);
+         this.y = Math.floor(Math.random()*5);
     }
     toString(){
         return '('+this.x+', '+this.y+')';
