@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>熟悉键盘事件的一些属性</title>
+	</head>
+	<body>
+		<input type="text" id="keyTest" />
+	</body>
+	<script>
+		window.onload = function() {
+			var keyTest = document.getElementById("keyTest");
+			//keyCode表示的是对应的unicode字符码
+			keyTest.onkeydown = function(event) {
+				// console.log(event.keyCode);
+				//可以用来过滤字符,大小写之类的，以下过滤了数字，如果输入数字则不会输入
+				if (event.keyCode >= 48 && event.keyCode <= 57) {
+					//return false 会 取消默认行为 比如提交表单 、 点击a标签，以及这里的输出字符
+					return false;
+				}
+			}
+			//事件冒泡，如果子元素触发onkeydown事件，同样注册onkeydown的document也会触发
+			// document.onkeydown = function(event){
+			// 	console.log("document:"+event.keyCode);
+			// }
+			document.onkeydown = function(event) {
+				console.log(event.keyCode);
+				if (event.keyCode == 65 && event.ctrlKey) {
+					//可以判断是否同时按下
+					console.log("you push the ctrl and a");
+				}
+			}
+		}
+	</script>
+</html>

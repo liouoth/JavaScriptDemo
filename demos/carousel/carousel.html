@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			margin: 100px auto;
+			height: 300px;
+			width: 500px;
+			border: 1px solid #808080;
+			/* overflow: hidden; */
+			position: relative;
+		}
+		#carousel{
+			width: 2500px;
+			position: absolute;
+			left: 0 px;
+		}
+		li{
+			list-style: none;
+			float: left;
+		}
+		.pic{
+			height: 300px;
+			width: 500px;
+		}
+		#nav>li{
+			height: 20px;
+			width: 20px;
+			background-color: aliceblue;
+			margin-right:10px;
+		}
+		#nav>li:hover{
+			background-color: orangered;
+			cursor: pointer;
+		}
+		#nav{
+			bottom: 20px;
+			margin: 0 auto;
+			width: 150px;
+		}
+		#navoutter{
+			position: absolute;
+			bottom: 20px;
+			width: 100%;
+		}
+	</style>
+	<body>
+		<div id="box">
+			<ul id="carousel">
+				<li><div class="pic" style="background-color: brown;"></div></li>
+				<li><div class="pic" style="background-color: yellowgreen;"></div></li>
+				<li><div class="pic" style="background-color: blueviolet;"></div></li>
+				<li><div class="pic" style="background-color: palevioletred;"></div></li>
+				<li><div class="pic" style="background-color: lightseagreen;"></div></li>
+			</ul>
+			<div id="navoutter">
+				<ul id = "nav">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		window.onload = function(){
+			//define index of the present pic  
+			var index = 0;
+			var carousel = document.getElementById("carousel");
+			var liList = document.getElementById("nav").getElementsByTagName("li");
+			var interval;
+			//bind click event 
+			for(var j=0;j<liList.length;j++){
+				var obj = liList[j];
+				obj.i = j;
+				liList[j].onclick  = function(){
+					clearInterval(interval);
+					alert(this.i);
+					carousel.style.left = -500*this.i+"px"
+					index = this.i;
+					changeChoosen(index);
+					autoCircle();
+				}
+			}
+			
+			liList[index].style.backgroundColor = "orangered";
+			
+			autoCircle();
+			
+			function autoCircle(){
+				interval = setInterval(function(){
+					liList[index].style.backgroundColor = "";
+					index=index+1;
+					var left = carousel.offsetLeft;
+					if(index<5){
+						carousel.style.left = left - 500 +"px";
+						liList[index].style.backgroundColor = "orangered";
+					}else{
+						index=0;
+						liList[index].style.backgroundColor = "orangered";
+						carousel.style.left = left +2000 +"px";
+					}
+				},2000);
+			}
+			
+			function changeChoosen(choosen){
+				for(var i=0;i<liList.length;i++){
+					liList[i].style.backgroundColor = "";
+				}
+				liList[choosen].style.backgroundColor = "orangered";
+			}
+			
+		}
+		
+	</script>
+</html>

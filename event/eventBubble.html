@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<style>
+		#gPDiv {
+			height: 600px;
+			width: 600px;
+			background-color: gray;
+		}
+
+		#pDiv {
+			height: 300px;
+			width: 300px;
+			background-color: cornflowerblue;
+		}
+
+		#pDiv2 {
+			height: 300px;
+			width: 300px;
+			background-color: darkblue;
+		}
+
+		#cDiv {
+			height: 100px;
+			width: 100px;
+			background-color: black;
+		}
+	</style>
+	<body>
+		<div id="gPDiv" prop="我是祖父">
+			<div id="pDiv" prop="我是父亲">
+				<div id="cDiv" prop="我是儿子">
+				</div>
+			</div>
+			<div id="pDiv2" prop="我是继父">
+				<div id="cDiv2" prop="我是女儿">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/**
+		 *  事件冒泡：从内向外触发元素相同的事件
+		 * 	例子中，从内向外触发onlick事件,只触发dom树的父节点，并不会触发父结点中的兄弟节点
+		 */
+		function log(object) {
+			return function(temp) {
+				return function() {
+					console.log(temp.getAttribute("prop") + "的点击事件");
+				}
+			}(object);
+		}
+		window.onload = function() {
+			var gPDiv = document.getElementById("gPDiv");
+			var pDiv = document.getElementById("pDiv");
+			var pDiv2 = document.getElementById("pDiv2");
+			var cDiv = document.getElementById("cDiv");
+			gPDiv.onclick = log(gPDiv);
+			pDiv.onclick = log(pDiv);
+			cDiv.onclick = log(cDiv);
+			pDiv2.onclick = log(pDiv2);
+		}
+	</script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>基础介绍</title>
+	</head>
+	<body>
+		<!-- 
+			bom对象为我们提供了js api 用来操控浏览器
+			
+			bom对象 (bowser)
+				- Window 代表了整个浏览器的窗口，是浏览器的全局对象
+				- Navigator 一开始Netscape的浏览器名，这里被指代为浏览器，可以通过这个对象来获取浏览器的信息
+				- Location 代表浏览器的地址栏信息，可以用于跳转
+				- History 代表浏览器的历史记录，可以通过该对象进行操作历史记录
+						  由于隐私的原因，该对象不能获取到具体的历史记录，能够操作浏览器向前向后（一次性操作）
+				- Screen 代表屏幕信息，可以获取显示器相关信息
+				
+				以上属性都是作为window对象的属性保存的，可以通过window对象进行访问，也可以直接访问。
+		 -->
+	</body>
+	<script>
+		window.onload = function() {
+			//可以用于打印出某个对象的所有属性
+			// console.dir(window);
+			/**
+			 * 包括Navigator、Location、History、Screen 
+			 * 他们都在window中
+			 */
+			
+			// console.dir(navigator);
+			
+			/**
+			 * appName 大部分都是netscape 并不能去区别出浏览器
+			 * userAgent 用户代理 可以用于区分 手机端 客户端 以及不同的浏览器
+			 * 之前有使用过一个chrome插件，可以用于显示不同useragent的网页
+			 */
+			
+			// console.dir(history);
+			
+			/**
+			 * 三个属性，length可以获取单次访问页面的个数
+			 * 
+			 * back() 返回上一个页面 
+			 * forward() 向前一个页面
+			 * go() 整合back以及forward go(1) go(-1) 分别是向前和向后一个页面
+			 */
+			
+			console.dir(location);
+			
+			/**
+			 *   href 可以直接修改location的地址，进行跳转。并且生成history
+			 * 	 assgin 与直接修改href效果一样
+			 * 	 reload 刷新 + true 则清空缓存刷新页面
+			 * 	 replace 替换地址并跳转不会生成history
+			 */
+		}
+	</script>
+</html>

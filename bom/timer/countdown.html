@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用定时器实现一个倒计时</title>
+	</head>
+	<body>
+		<h1 id="timer">10</h1>
+	</body>
+	<script>
+		window.onload = function() {
+			var timer = document.getElementById("timer");
+			//一开始我想用以下写法，但是JavaScript的机制会先进行循环，这就是闭包的问题
+			// for (var i = 10; i > 0; i--) {
+			// 	/**
+			// 	 * 如果直接进行循环，计算机运行速度太快，会导致循环直接走完
+			// 	 * 所以需要定时器
+			// 	 */
+			// 	window.setInterval(function() {
+			// 		timer.innerHTML = i;
+			// 	}, 2000);
+			// }
+			//尝试一下使用改进方式
+
+			// for (var i = 10; i > 0; i--) {
+			// 	/**
+			// 	 * 如果直接进行循环，计算机运行速度太快，会导致循环直接走完
+			// 	 * 所以需要定时器
+			//	 * 我混淆了一个概念 定时器 setInterval 是会一直执行的，如果使用for循环 应该使用setTimeout
+			// 	 *
+			// 	var timerResult = window.setInterval((function(num) {
+			// 		return function() {
+			// 			console.log(num);
+			// 			if(num==1){
+			// 				window.clearInterval(timerResult);
+			// 			}
+			// 			timer.innerHTML = num;
+			// 		}
+			// 	})(i), 2000);
+			// }
+			var i = 10;
+			var timerResult = window.setInterval(function() {
+				if(i==0){
+					window.clearInterval(timerResult);
+				}
+				timer.innerHTML = i--;
+			}, 1000);
+		}
+	</script>
+</html>
